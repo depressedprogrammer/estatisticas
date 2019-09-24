@@ -22,7 +22,14 @@ btok.onclick = function(){
     var p2 = document.createElement('p');
     p2.appendChild(ordenado);
     saida.appendChild(p2);
-}
 
-var total = document.getElementById('total');
-total.appendChild(document.createTextNode())
+    function sum(total,next){
+        return total + next;
+    }
+    
+    var soma = entradas.reduce(sum);
+    var total = document.getElementById('total');
+    total.innerHTML = "";
+    total.appendChild(document.createTextNode("Σ:" + soma))
+    
+}
