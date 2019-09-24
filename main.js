@@ -12,4 +12,4 @@ for (x of conteudo){
 }
 
 logo.setAttribute = ('width','auto');
-logo.setAttribute = ('height', 200');
+logo.setAttribute = ('height', '200');
