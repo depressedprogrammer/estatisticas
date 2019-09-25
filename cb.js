@@ -27,11 +27,9 @@ btok.onclick = function(){
     var tabela = createTable(entradas.sort((a,b) => a-b));
     saida.appendChild(tabela);
 
-    function sum(total,next){
-        return total + next;
-    }
     
-    var soma = entradas.reduce(sum);
+    
+    var soma = somar(entradas);
 
     var res = document.getElementById('resultados');
     res.innerHTML = '';
@@ -42,6 +40,31 @@ btok.onclick = function(){
     temp = entradas.length ** 0.5;
     res.appendChild(ptxt("Cálculo das classes: " + temp));
     res.appendChild(entry('qntclasses','number','Usar qnts classes?','classesok'));
+    
+    document.getElementById('classesok').onclick = function () {
+        document.getElementById('qntclasses').setAttribute('disabled','');
+        let intervalo = entradas.sort((a,b) => a-b)[entradas.length - 1] / document.getElementById('qntclasses').value;
+        res.appendChild(ptxt("Calculo do intervalo: " + intervalo));
+        res.appendChild(entry('tamanhointervalo','number','tamanho do intervalo','intervalook'));
+        
+
+        document.getElementById('intervalook').onclick = function(){
+            var stringintervalos = entradas[0];
+            //document.getElementById('tamanhointervalo').setAttribute('disabled','');
+            var txtintervalos = [];
+            let intervaloescolhido = document.getElementById('tamanhointervalo').value;
+            for (n=0;n<document.getElementById('qntclasses').value;n++){
+                var content = '';
+                content = (stringintervalos) + "|----" + (parseInt(stringintervalos)+parseInt(intervaloescolhido)); 
+                txtintervalos.push(content);
+                stringintervalos = parseInt(stringintervalos) + parseInt(intervaloescolhido);
+            }
+            console.log(txtintervalos);
+        }
+    }    
+}
+function somar(vetor){
+    return vetor.reduce((a,b) => a + b);
 }
 
 function ptxt(string){
@@ -50,6 +73,7 @@ function ptxt(string){
     return ptxt;
 }
 function entry(identrada, tipoentrada, dicaentrada, idbotao){
+    // criar entrada + botao com id's especificas
     let entry = document.createElement('input');
     entry.setAttribute('type',tipoentrada);
     entry.setAttribute('placeholder',dicaentrada);
