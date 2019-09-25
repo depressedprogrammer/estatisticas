@@ -18,7 +18,7 @@ btok.onclick = function(){
     p1.appendChild(desordenado);
     saida.appendChild(p1);
 
-    var ordenado = document.createTextNode(entradas.sort());
+    var ordenado = document.createTextNode(entradas.sort((a,b) => a-b));
     var p2 = document.createElement('p');
     p2.appendChild(ordenado);
     saida.appendChild(p2);
