@@ -1,6 +1,8 @@
-var logo = document.getElementById('logo');
-logo.setAttribute('src','https://66.media.tumblr.com/4211d1c5cf721bf5da87229b492f6526/tumblr_plrx8mfmOA1sguk2k_540.gif')
-logo.setAttribute('style','width:auto;height:200px;');
+function tituloprincipal(local){
+  let a;
+}
+
+
 
 var conteudo = ['calculo basico','botao aleatorio', 'uh'];
 var links = ['cb.html','https://theuselessweb.com/','#']
