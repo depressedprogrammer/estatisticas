@@ -52,14 +52,43 @@ btok.onclick = function(){
             var stringintervalos = entradas[0];
             //document.getElementById('tamanhointervalo').setAttribute('disabled','');
             var txtintervalos = [];
+            var tabelafinalvalores = [];
             let intervaloescolhido = document.getElementById('tamanhointervalo').value;
             for (n=0;n<document.getElementById('qntclasses').value;n++){
                 var content = '';
                 content = (stringintervalos) + "|----" + (parseInt(stringintervalos)+parseInt(intervaloescolhido)); 
                 txtintervalos.push(content);
+                tabelafinalvalores.push("intervalo");
+                tabelafinalvalores.push("Xi");
+                tabelafinalvalores.push("Fi");
+                tabelafinalvalores.push("XiFi");
+                tabelafinalvalores.push("Di");
+                tabelafinalvalores.push("nao sei");
+                
+                tabelafinalvalores.push(content);
+                var somai = 0;
+                for (w of entradas){
+                    if (w>=parseInt(stringintervalos) && w<(parseInt(intervaloescolhido)+parseInt(stringintervalos))){
+                        somai++;
+                    }
+                }
+
+                let intervalosuperior = parseInt(stringintervalos) + parseInt(intervaloescolhido);
+                let mediaintervalo = (parseInt(intervalosuperior)+parseInt(stringintervalos))/2
+                tabelafinalvalores.push(mediaintervalo);
+                tabelafinalvalores.push(somai);
+                tabelafinalvalores.push(mediaintervalo*somai);
+                tabelafinalvalores.push((soma/entradas.length)-mediaintervalo);
+                tabelafinalvalores.push(((soma/entradas.length)-mediaintervalo)*soma)
+                console.log(tabelafinalvalores);
+
+
                 stringintervalos = parseInt(stringintervalos) + parseInt(intervaloescolhido);
             }
             console.log(txtintervalos);
+
+
+            res.appendChild(createTable(tabelafinalvalores));
         }
     }    
 }
@@ -90,7 +119,7 @@ function entry(identrada, tipoentrada, dicaentrada, idbotao){
 function createTable(vetorrecebido){
     var vetor = vetorrecebido.concat();
     var style = "font-size: 15px; border: 1px solid black; border-collapse: collapse;";
-    j = 5;
+    j = 6;
     i = vetor.length/5;
     x = j * i;
     for (a = 0; a<x; a++){
