@@ -46,24 +46,17 @@ btok.onclick = function(){
         let intervalo = entradas.sort((a,b) => a-b)[entradas.length - 1] / document.getElementById('qntclasses').value;
         res.appendChild(ptxt("Calculo do intervalo: " + intervalo));
         res.appendChild(entry('tamanhointervalo','number','tamanho do intervalo','intervalook'));
-        
 
         document.getElementById('intervalook').onclick = function(){
             var stringintervalos = entradas[0];
             //document.getElementById('tamanhointervalo').setAttribute('disabled','');
             var txtintervalos = [];
-            var tabelafinalvalores = [];
+            var tabelafinalvalores = ['Intervalo','Xi','Fi','XiFi','Di', 'Di²'];
             let intervaloescolhido = document.getElementById('tamanhointervalo').value;
             for (n=0;n<document.getElementById('qntclasses').value;n++){
                 var content = '';
                 content = (stringintervalos) + "|----" + (parseInt(stringintervalos)+parseInt(intervaloescolhido)); 
                 txtintervalos.push(content);
-                tabelafinalvalores.push("intervalo");
-                tabelafinalvalores.push("Xi");
-                tabelafinalvalores.push("Fi");
-                tabelafinalvalores.push("XiFi");
-                tabelafinalvalores.push("Di");
-                tabelafinalvalores.push("nao sei");
                 
                 tabelafinalvalores.push(content);
                 var somai = 0;
@@ -79,7 +72,7 @@ btok.onclick = function(){
                 tabelafinalvalores.push(somai);
                 tabelafinalvalores.push(mediaintervalo*somai);
                 tabelafinalvalores.push((soma/entradas.length)-mediaintervalo);
-                tabelafinalvalores.push(((soma/entradas.length)-mediaintervalo)*soma)
+                tabelafinalvalores.push(((soma/entradas.length)-mediaintervalo)**2)
                 console.log(tabelafinalvalores);
 
 
