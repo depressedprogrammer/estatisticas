@@ -1,0 +1,31 @@
+<html>
+<head>
+<title>"Notas de SO"</title>
+</head>
+<body>
+  <p> p1 </p>
+  <input id="p1" type="number">
+  <p> p2 </p>
+  <input id="p2" type="number">
+  <p> trabalhos (0 - 1)</p>
+  <input id="t" type="number">
+  <p> pmu (0 - 1)</p>
+  <input id="pmu" type="number">
+  <br><br>
+  <button id="ok">OK</button>
+  <p> nota </p>
+  <h1 id="resultado"></h1>
+</body>
+<script>
+document.getElementById("ok").onclick() = function(){
+var p1 = 0 + document.getElementById("p1");
+var p2 = 0 + document.getElementById('p2');
+var t = 0 + document.getElementById("t");
+var pmu = 0 + document.getElementById("pmu");
+var saida = 0 + document.getElementById("resultado");
+var resultado = (p1 * 1 + p2 * 2) / 3
+resultado = resultado + pmu + trabalho
+saida.appendChild(document.createTextNode(resultado));
+}
+</script>
+</html>
