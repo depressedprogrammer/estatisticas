@@ -15,17 +15,19 @@
   <button id="ok">OK</button>
   <p> nota </p>
   <h1 id="resultado"></h1>
+
+  <script>
+    document.getElementById("ok").onclick = function(){
+      var p1 = 0 + parseInt(document.getElementById("p1").value);
+      var p2 = 0 + parseInt(document.getElementById('p2').value);
+      var t = 0 + parseInt(document.getElementById("t").value);
+      var pmu = 0 + parseInt(document.getElementById("pmu").value);
+      var saida = document.getElementById("resultado");
+      var resultado = (p1 * 1 + p2 * 2) / 3;
+      resultado = resultado + pmu + t;
+      saida.innerHTML = '';
+      saida.appendChild(document.createTextNode(resultado));
+    }
+  </script>
 </body>
-<script>
-document.getElementById("ok").onclick = function(){
-var p1 = 0 + parseInt(document.getElementById("p1").value);
-var p2 = 0 + parseInt(document.getElementById('p2').value);
-var t = 0 + parseInt(document.getElementById("t").value);
-var pmu = 0 + parseInt(document.getElementById("pmu").value);
-var saida = document.getElementById("resultado");
-var resultado = (p1 * 1 + p2 * 2) / 3;
-resultado = resultado + pmu + trabalho;
-saida.appendChild(document.createTextNode(resultado));
-}
-</script>
 </html>
