@@ -5,17 +5,22 @@
 <body>
   <h3>Calculadora de notas - ADS FATEC 3 SEM</h3>
   <div>
-  <select id="option">
-    <option value="0">Sistemas operacionais</option>
-    <option value="1">Engenharia de software 2</option>
-    <option value="2">Estrutura de dados</option>
-  </select>
+  <select id="option"></select>
   <button id="bt">OK</button>
   </div>
   <div id="entradas"></div>
   <div id="saida"></div>
 
   <script>
+    var materias = ["Sistemas Operacionais", "Engenharia de Software", "Estrutura de dados"];
+    function addOption(txt){
+      var option = document.createElement('option');
+      option.appendChild(document.createTextNode(txt));
+      return option;
+    }
+    materias.map(x => document.querySelector("#option").appendChild(addOption(x)));
+    console.log(document.querySelector('#option').getAttribute('innerHtml'));
+    
     newEntrada('p1','P1');
     newEntrada('p2','P2');
     
