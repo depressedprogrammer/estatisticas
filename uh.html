@@ -93,9 +93,11 @@
       document.querySelector('div#bts > button').onclick = function(){
         valores = [];
         document.querySelectorAll('input').forEach(x => valores.push(x.valueAsNumber));
+        console.log(valores);
         var media = c('h1','display-2','text-align:center');
         media.appendChild(getmedia());
         document.querySelector('#txt').innerHTML = "";
+        document.querySelector('#txt').setAttribute('style','padding: 2em;')
         document.querySelector('#txt').appendChild(media);
       }
     }
@@ -121,14 +123,12 @@
 
     function getmedia(){
       let total = 0;
-      let inputs = document.querySelectorAll("input");
-      let notasobtidas = [];
-      inputs.forEach(function(x,y){notasobtidas.push(parseFloat(x.value));});
-      console.log(notasobtidas);
+
       for(var i=0; i<notas[index].length;i++){
-        total += notasobtidas[i] * pesos[index][i];
+        if (!Number.isNaN(valores[i])){
+          total += valores[i] * pesos[index][i];
+        }
       }
-      
       return document.createTextNode(total.toFixed(2));
     }
 
