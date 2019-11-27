@@ -9,19 +9,19 @@
   .page-header{
     background-color: rgb(165, 28, 48);
     color: white;
-    padding: 2em;
+    padding: 3em;
     text-align: center;
   }
-  .jumbotron{
-    width:70%;
+  .bg-light{
     margin:auto;
+    padding: 2em;
   }
 </style>
 </head>
 <body>
   <div class="container">
   <div class="page-header"><h3>Calculadora de Notas - ADS FATEC 3 SEM</h3></div><br>
-  <div class="jumbotron">
+  <div class="bg-light text-dark">
     <div class="row">
       <div class="col-8"><select class="custom-select d-block w-100" id="option"></select></div>
       <div class="col-1"></div>
@@ -62,12 +62,10 @@
     var valores = [];
     var ok = document.getElementById('bt').onclick = function(){
       document.querySelector('#entradas').innerHTML = "<br>";
-      var saida = document.querySelector('#bts');
-      saida.className = "jumbotron";
-      saida.innerHTML = "<br>";
+      document.querySelector('#saidas').innerHTML = "<br>";
 
       index = document.querySelector('#option').selectedIndex;
-      var card = c('card','card','width:70%; padding:1rem; margin:auto')
+      var card = c('card','card','width:70%; padding:1rem; margin:auto');
       let title = c('h4','card-title','');
       title.appendChild(document.createTextNode("Notas: "));
       card.appendChild(title);
@@ -76,14 +74,20 @@
       for (var i=0; i<notas[index].length;i++){
         newEntrada(notas[index][i],nomes[index][i]);
       }
-      let botao = c('button','btn btn-dark btn-block','');
+      var botao = c('button','btn btn-dark btn-block','');
       botao.setAttribute('role','button');
       botao.appendChild(document.createTextNode("Calcular"));
-      saida.appendChild(botao);
-      document.querySelector('#bts > button').onclick = function(){
+      
+      var divsaida = c('div','a','color:red;margin:auto;');
+      botao.onclick = function(){
         valores = [];
         document.querySelectorAll('input').forEach(x => valores.push(x.valueAsNumber));
+        var media = c('p','b','text-align:center');
+        media.appendChild(getmedia());
+        divsaida.appendChild(media);
       }
+      document.querySelector('#bts').appendChild(botao);
+      document.querySelector('#txt').appendChild(divsaida);
 
     }
 
@@ -116,11 +120,9 @@
         total += notasobtidas[i] * pesos[index][i];
       }
       
-      let p = document.querySelector("#saida > p");
-      p.innerHTML = "";
-      p.appendChild(document.createTextNode(total));
-      
+      return document.createTextNode(total);
     }
+
     function br(place, n){
       for (var i=0;i<n;i++){
         place.appendChild(document.createElement('br'));
