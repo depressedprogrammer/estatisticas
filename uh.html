@@ -152,7 +152,29 @@
       let input = c('input',classes[3],'');
       input.setAttribute('type','number');
       input.setAttribute('placeholder',placeholder);
-      input.setAttribute('pattern','[0-9].[0-9]');
+      let valor = 0;
+
+      input.oninput = function(){
+        let n = input.value.length;
+        console.log(input.valueAsNumber, n);
+        if (Number.isNaN(input.valueAsNumber)){
+          input.value = input.value.slice(0,n-1);
+        }
+        else{
+          if (input.value>10){
+            input.value = input.value.slice(0,n-1);
+          }
+          else{
+            if (input.valueAsNumber==10 && input.value.length>5){
+              input.value = input.value.slice(0,n-1);
+            }
+            if (input.valueAsNumber!=10 && input.value.length>4){
+              input.value = input.value.slice(0,n-1);
+            }
+          }
+        }
+      }
+      
       divall.appendChild(input);
       document.querySelector('.card').appendChild(divall);
     }
