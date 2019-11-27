@@ -22,6 +22,9 @@
     margin:auto;
     box-shadow: 0.1em 0.1em 0.5em gray;
   }
+  .col-12{
+    padding:1rem;
+  }
 </style>
 </head>
 <body>
@@ -36,8 +39,9 @@
   </div>
   <div id="entradas"></div><br><br>
   <div id="saidas">
-    <div class="row"><div class="col-12" id="txt"></div></div>
-    <div class="row"><div class="col-12" id="bts"></div></div>
+    <div class="row"><div class="col-12"  id="txt"></div></div>
+    <div class="row"><div class="col-12"  id="bts"></div></div>
+    <div class="row"><div class="col-12"  id="sub"></div></div>
   </div>
   </div>
   <script>
@@ -82,7 +86,7 @@
         newEntrada(notas[index][i],nomes[index][i]);
       }
       var botao = c('button','btn btn-dark btn-block','');
-      botao.setAttribute('role','button');
+      //botao.setAttribute('role','button');
       botao.appendChild(document.createTextNode("Calcular"));
       
       let btcalcular = c('button','btn btn-dark btn-block','');
@@ -91,14 +95,26 @@
       document.querySelector('div#bts').appendChild(btcalcular);
 
       document.querySelector('div#bts > button').onclick = function(){
+        document.querySelector('div#sub').innerHTML = "";
         valores = [];
         document.querySelectorAll('input').forEach(x => valores.push(x.valueAsNumber));
         console.log(valores);
         var media = c('h1','display-2','text-align:center');
-        media.appendChild(getmedia());
+        media.appendChild(document.createTextNode(getmedia().toFixed(2)));
         document.querySelector('#txt').innerHTML = "";
         document.querySelector('#txt').setAttribute('style','padding: 2em;')
         document.querySelector('#txt').appendChild(media);
+        if (Number.isNaN(valores[1]) && !Number.isNaN(valores[0])){
+          let btp2 = c('button','btn btn-info  btn-block','');
+          btp2.appendChild(document.createTextNode("Quanto eu preciso na p2?"));
+          document.querySelector('div#sub').appendChild(btp2);
+        }
+        document.querySelector('div#sub > button').onclick = function(){
+          let falta = 6 - getmedia();
+          falta = falta / pesos[index][1];
+          document.querySelectorAll('input').item(1).innerHTML == "";
+          document.querySelectorAll('input').item(1).value = falta;
+        }
       }
     }
 
@@ -123,21 +139,14 @@
 
     function getmedia(){
       let total = 0;
-
       for(var i=0; i<notas[index].length;i++){
         if (!Number.isNaN(valores[i])){
           total += valores[i] * pesos[index][i];
         }
       }
-      return document.createTextNode(total.toFixed(2));
+      return total;
     }
 
-    function br(place, n){
-      for (var i=0;i<n;i++){
-        place.appendChild(document.createElement('br'));
-      }
-    }
-    
   </script>
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
