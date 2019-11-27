@@ -20,6 +20,7 @@
     width:70%;
     padding:1rem;
     margin:auto;
+    box-shadow: 0.1em 0.1em 0.5em gray;
   }
 </style>
 </head>
@@ -33,10 +34,10 @@
       <div class="col-3"><button id="bt" class="btn btn-dark btn-block" role="button">OK</button></div>
     </div>
   </div>
-  <div id="entradas"></div><br>
+  <div id="entradas"></div><br><br>
   <div id="saidas">
-    <div class="row"><div class="col-12" id="bts"></div></div>
     <div class="row"><div class="col-12" id="txt"></div></div>
+    <div class="row"><div class="col-12" id="bts"></div></div>
   </div>
   </div>
   <script>
@@ -84,17 +85,17 @@
       botao.setAttribute('role','button');
       botao.appendChild(document.createTextNode("Calcular"));
       
-      var divsaida = c('div','a','color:red;margin:auto;');
       let btcalcular = c('button','btn btn-dark btn-block','');
       btcalcular.appendChild(document.createTextNode("Calcular"));
       document.querySelector('div#bts').innerHTML = "";
       document.querySelector('div#bts').appendChild(btcalcular);
-      botao.onclick = function(){
+
+      document.querySelector('div#bts > button').onclick = function(){
         valores = [];
         document.querySelectorAll('input').forEach(x => valores.push(x.valueAsNumber));
-        var media = c('p','text','text-align:center');
+        var media = c('h1','display-2','text-align:center');
         media.appendChild(getmedia());
-
+        document.querySelector('#txt').innerHTML = "";
         document.querySelector('#txt').appendChild(media);
       }
     }
@@ -128,7 +129,7 @@
         total += notasobtidas[i] * pesos[index][i];
       }
       
-      return document.createTextNode(total);
+      return document.createTextNode(total.toFixed(2));
     }
 
     function br(place, n){
