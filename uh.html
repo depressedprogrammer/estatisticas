@@ -145,6 +145,8 @@
       let classes = ["input-group mb-2","input-group-prepend","input-group-text","form-control"];
       let txt = c('span',classes[2],'');
       txt.appendChild(document.createTextNode(nome));
+      txt.setAttribute('data-toggle','tooltip');
+      txt.setAttribute('title',placeholder);
       let divspan = c('div',classes[1],'');
       divspan.appendChild(txt);
       let divall = c('div',classes[0],'');
