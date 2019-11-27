@@ -15,6 +15,7 @@
   .bg-light{
     margin:auto;
     padding: 2em;
+    width:70%;
   }
   .card{
     width:70%;
@@ -26,6 +27,7 @@
   .col-12{
     padding:1rem;
   }
+  
 </style>
 </head>
 <body>
@@ -141,7 +143,7 @@
       
       //div card, div inputs, divbloco, span texto, input
       let classes = ["input-group mb-2","input-group-prepend","input-group-text","form-control"];
-      let txt = c('span',classes[2],'');
+      let txt = c('span',classes[2],'min-width: 4rem;');
       txt.appendChild(document.createTextNode(nome));
       txt.setAttribute('data-toggle','tooltip');
       txt.setAttribute('title',placeholder);
@@ -174,7 +176,7 @@
           }
         }
       }
-      
+
       divall.appendChild(input);
       document.querySelector('.card').appendChild(divall);
     }
