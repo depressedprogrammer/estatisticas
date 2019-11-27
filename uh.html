@@ -16,6 +16,11 @@
     margin:auto;
     padding: 2em;
   }
+  .card{
+    width:70%;
+    padding:1rem;
+    margin:auto;
+  }
 </style>
 </head>
 <body>
@@ -30,8 +35,8 @@
   </div>
   <div id="entradas"></div><br>
   <div id="saidas">
-    <div class="row" id="bts"></div>
-    <div class="row" id="txt"></div>
+    <div class="row"><div class="col-12" id="bts"></div></div>
+    <div class="row"><div class="col-12" id="txt"></div></div>
   </div>
   </div>
   <script>
@@ -62,10 +67,11 @@
     var valores = [];
     var ok = document.getElementById('bt').onclick = function(){
       document.querySelector('#entradas').innerHTML = "<br>";
-      document.querySelector('#saidas').innerHTML = "<br>";
+      document.querySelector('#saidas').className = "card";
+      
 
       index = document.querySelector('#option').selectedIndex;
-      var card = c('card','card','width:70%; padding:1rem; margin:auto');
+      let card = c('card','card','');
       let title = c('h4','card-title','');
       title.appendChild(document.createTextNode("Notas: "));
       card.appendChild(title);
@@ -79,16 +85,18 @@
       botao.appendChild(document.createTextNode("Calcular"));
       
       var divsaida = c('div','a','color:red;margin:auto;');
+      let btcalcular = c('button','btn btn-dark btn-block','');
+      btcalcular.appendChild(document.createTextNode("Calcular"));
+      document.querySelector('div#bts').innerHTML = "";
+      document.querySelector('div#bts').appendChild(btcalcular);
       botao.onclick = function(){
         valores = [];
         document.querySelectorAll('input').forEach(x => valores.push(x.valueAsNumber));
-        var media = c('p','b','text-align:center');
+        var media = c('p','text','text-align:center');
         media.appendChild(getmedia());
-        divsaida.appendChild(media);
-      }
-      document.querySelector('#bts').appendChild(botao);
-      document.querySelector('#txt').appendChild(divsaida);
 
+        document.querySelector('#txt').appendChild(media);
+      }
     }
 
     
